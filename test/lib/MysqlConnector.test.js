@@ -9,10 +9,10 @@ const MysqlConnector = require('../../lib/MysqlConnector');
 describe('MysqlConnector', () => {
   const sandbox = sinon.createSandbox();
   const mysqlConfig = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'mysql',
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
   };
 
   afterEach(() => {
