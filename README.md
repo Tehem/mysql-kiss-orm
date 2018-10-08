@@ -37,10 +37,12 @@ await mysql.updateOne('users', { id: 123 }, { name: 'Jane Doe' });
 await mysql.deleteOne('users', user);
 // DELETE FROM users WHERE id=user.id ...
 
-const users = await mysql.findMany({ type: 2 });
+// Return all matching rows
+const users = await mysql.findMany('users', { type: 2 });
 // users = [{ id: 123, name: 'Jane Doe', ... }, { ... } ]
 
-const user = await mysql.findOne({ id: 123 }, ['name']);
+// Return the first matching row
+const user = await mysql.findOne('users', { id: 123 }, ['name']);
 // user = { id: 123, name: 'Jane Doe' }
 
 // RAW prepared queries

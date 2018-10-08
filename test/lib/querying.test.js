@@ -51,6 +51,12 @@ describe('Querying', () => {
       await mysql.disconnect();
     });
 
+    it('finds no matching rows in table', async () => {
+      await mysqlConnection.execute(insertSQL);
+      const rows = await mysql.findMany('tests', { type: 0 });
+      expect(rows).to.deep.equal([]);
+    });
+
     it('finds all rows in table', async () => {
       await mysqlConnection.execute(insertSQL);
       const rows = await mysql.findMany('tests');
@@ -62,6 +68,16 @@ describe('Querying', () => {
           name: 'test 3',
           type: 2,
         },
+      ]);
+    });
+
+    it('returns only required fields from matching rows in table', async () => {
+      await mysqlConnection.execute(insertSQL);
+      const rows = await mysql.findMany('tests', {}, ['name']);
+      expect(rows).to.deep.equal([
+        { name: 'test 1' },
+        { name: 'test 2' },
+        { name: 'test 3' },
       ]);
     });
   });
