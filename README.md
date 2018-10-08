@@ -1,5 +1,8 @@
 # KISS Orm for MySQL
 
+[![Build Status](https://travis-ci.org/Tehem/kiss-orm.svg?branch=master)](https://travis-ci.org/Tehem/kiss-orm)
+[![codecov](https://codecov.io/gh/Tehem/kiss-orm/branch/master/graph/badge.svg)](https://codecov.io/gh/Tehem/kiss-orm)
+
 ## Introduction
 
 Small ORM wrapper for [`node-mysql2-promise`](https://github.com/namshi/node-mysql2-promise), 
