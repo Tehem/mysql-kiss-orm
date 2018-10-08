@@ -1,2 +1,10 @@
+sudo: required
+
 language: node_js
+
+services:
+- mysql
+
+before_install:
+- sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS kiss_orm_test"
 
