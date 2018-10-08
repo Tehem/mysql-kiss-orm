@@ -1,0 +1,61 @@
+{
+  "name": "kiss-orm",
+  "version": "0.1.0",
+  "description": "Simple Node.JS MySQL ORM attempt",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=8.12"
+  },
+  "scripts": {
+    "coverage": "LOGGER_LEVEL=fatal NODE_ENV=test nyc _mocha",
+    "esdoc": "esdoc",
+    "eslint": "eslint lib",
+    "lint": "npm run prettier && npm run eslint",
+    "mocha": "NODE_ENV=test mocha --bail",
+    "postinstall": "npm run esdoc",
+    "prettier": "prettier -l '{lib,test}/**/*.{js,yml,yaml,json}'",
+    "test": "npm run lint && npm run coverage"
+  },
+  "dependencies": {
+    "esdoc": "1.1.0",
+    "esdoc-ecmascript-proposal-plugin": "1.0.0",
+    "esdoc-node": "1.0.3",
+    "esdoc-standard-plugin": "1.0.0",
+    "lodash": "4.17.11",
+    "mysql2": "1.6.1"
+  },
+  "devDependencies": {
+    "chai": "4.1.2",
+    "eslint": "5.6.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-cp": "5.4.0",
+    "eslint-config-prettier": "3.1.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-metrics": "1.0.4",
+    "mocha": "5.2.0",
+    "nyc": "13.0.1",
+    "prettier": "1.14.3",
+    "sinon": "6.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tehem/kiss-orm.git",
+    "private": false
+  },
+  "keywords": [
+    "node",
+    "mysql",
+    "orm",
+    "lib",
+    "async"
+  ],
+  "author": "Tehem <tehem@tehem.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tehem/kiss-orm/issues"
+  },
+  "homepage": "https://github.com/Tehem/kiss-orm#readme"
+}

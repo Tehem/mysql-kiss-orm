@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "cp",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 8
+  }
+}

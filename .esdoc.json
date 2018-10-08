@@ -1,0 +1,26 @@
+{
+  "source": "./src",
+  "destination": "./doc",
+  "excludes": [
+    "index.js"
+  ],
+  "plugins": [
+    {
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "coverage": {
+          "enable": false
+        }
+      }
+    },
+    {
+      "name": "esdoc-node"
+    },
+    {
+      "name": "esdoc-ecmascript-proposal-plugin",
+      "option": {
+        "all": true
+      }
+    }
+  ]
+}

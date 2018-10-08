@@ -1,0 +1,18 @@
+# Logs
+*.log
+*.db
+npm-debug.log*
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Dependency directories
+node_modules/
+# JetBrains IDE
+.idea/
+
+# Coverage and test data
+.nyc_output/
+
+# docs
+doc/
