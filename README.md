@@ -38,12 +38,12 @@ await mysql.deleteOne('users', user);
 // DELETE FROM users WHERE id=user.id ...
 
 // Return all matching rows
-const users = await mysql.findMany('users', { type: 2 });
+const users = await mysql.findMany('users', { type: 2 }, { offset: 10, limit: 10 });
 // users = [{ id: 123, name: 'Jane Doe', ... }, { ... } ]
 
 // Return the first matching row
-const user = await mysql.findOne('users', { id: 123 }, ['name']);
-// user = { id: 123, name: 'Jane Doe' }
+const user = await mysql.findOne('users', { id: 123 }, { projections: ['name'] });
+// user = { name: 'Jane Doe' }
 
 // RAW prepared queries
 const rows = await mysql.query('SELECT id FROM users WHERE email=?', ['test@example.com']);
