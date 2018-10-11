@@ -48,4 +48,22 @@ describe('[UTILS] parsing', () => {
       expect(queryPart).to.equal('joe=? AND jake=? AND john=?');
     });
   });
+
+  describe('#getSortingPart', () => {
+    it('returns empty string if sort is null', () => {
+      const sortingPart = parsingLib.getSortingPart(null);
+      expect(sortingPart).to.equal('');
+    });
+    it('returns empty string if sort is empty', () => {
+      const sortingPart = parsingLib.getSortingPart({});
+      expect(sortingPart).to.equal('');
+    });
+    it('returns ORDER BY string with sort direction regardless of case', () => {
+      const sortingPart = parsingLib.getSortingPart({
+        id: 'asc',
+        name: 'DESc',
+      });
+      expect(sortingPart).to.equal('ORDER BY id ASC, name DESC');
+    });
+  });
 });

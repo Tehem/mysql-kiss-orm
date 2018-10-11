@@ -37,8 +37,8 @@ await mysql.updateOne('users', { id: 123 }, { name: 'Jane Doe' });
 await mysql.deleteOne('users', user);
 // DELETE FROM users WHERE id=user.id ...
 
-// Return all matching rows
-const users = await mysql.findMany('users', { type: 2 }, { offset: 10, limit: 10 });
+// Return all matching rows with limit, offset and sort
+const users = await mysql.findMany('users', { type: 2 }, { offset: 10, limit: 10, sort: { name: 'ASC' } });
 // users = [{ id: 123, name: 'Jane Doe', ... }, { ... } ]
 
 // Return the first matching row

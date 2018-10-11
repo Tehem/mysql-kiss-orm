@@ -94,6 +94,19 @@ describe('Querying', () => {
         { name: 'test 3' },
       ]);
     });
+
+    it('returns all matching rows with a sort applied', async () => {
+      const rows = await mysqlConector.findMany(
+        'tests',
+        {},
+        { sort: { type: 'DESC', id: 'ASC' } },
+      );
+      expect(rows).to.deep.equal([
+        { id: 2, name: 'test 2', type: 3 },
+        { id: 3, name: 'test 3', type: 3 },
+        { id: 1, name: 'test 1', type: 1 },
+      ]);
+    });
   });
 
   describe('#findOne', () => {
