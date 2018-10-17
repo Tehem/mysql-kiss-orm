@@ -6,7 +6,7 @@ services:
 - mysql
 
 before_install:
-- sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS kiss_orm_test"
+- sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS mysql_kiss_orm_test"
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)

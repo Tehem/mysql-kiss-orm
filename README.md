@@ -1,7 +1,8 @@
 # KISS Orm for MySQL
 
-[![Build Status](https://travis-ci.org/Tehem/kiss-orm.svg?branch=master)](https://travis-ci.org/Tehem/kiss-orm)
-[![codecov](https://codecov.io/gh/Tehem/kiss-orm/branch/master/graph/badge.svg)](https://codecov.io/gh/Tehem/kiss-orm)
+[![Build Status](https://travis-ci.org/Tehem/mysql-kiss-orm.svg?branch=master)](https://travis-ci.org/Tehem/mysql-kiss-orm)
+[![codecov](https://codecov.io/gh/Tehem/mysql-kiss-orm/branch/master/graph/badge.svg)](https://codecov.io/gh/Tehem/mysql-kiss-orm)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Introduction
 
@@ -65,6 +66,6 @@ For example, if you have an installation of mysql running on localhost:3306
 and no password set for the `root` user, run:
 
 ```sh
-$ mysql -u root -e "CREATE DATABASE IF NOT EXISTS kiss_orm_test"
-$ MYSQL_HOST=localhost MYSQL_PORT=3306 MYSQL_DATABASE=kiss_orm_test MYSQL_USER=root MYSQL_PASSWORD= npm test
+$ mysql -u root -e "CREATE DATABASE IF NOT EXISTS mysql_kiss_orm_test"
+$ MYSQL_HOST=localhost MYSQL_PORT=3306 MYSQL_DATABASE=mysql_kiss_orm_test MYSQL_USER=root MYSQL_PASSWORD= npm test
 ```
