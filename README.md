@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Small ORM wrapper for [`node-mysql2-promise`](https://github.com/namshi/node-mysql2-promise), 
+Small ORM wrapper for [`node-mysql2`](https://github.com/sidorares/node-mysql2), 
 
 If you just want to manipulate Javascript object and don't want to bother with building SQL to query your MySQL database.
 
@@ -29,7 +29,7 @@ const mysql = new MysqlConnector(mysqlConfig);
 await mysql.connect();
 
 const user = { id: 123, name: 'John Doe', email: 'test@example.com' };
-await mysql.insert('users', user);
+await mysql.insertOne('users', user);
 // INSERT INTO users (id, name, email) VALUES (123, 'John Doe', 'test@example.com');
 
 await mysql.updateOne('users', { id: 123 }, { name: 'Jane Doe' });
@@ -47,7 +47,7 @@ const user = await mysql.findOne('users', { id: 123 }, { projections: ['name'] }
 // user = { name: 'Jane Doe' }
 
 // RAW prepared queries
-const rows = await mysql.query('SELECT id FROM users WHERE email=?', ['test@example.com']);
+const [ rows ] = await mysql.query('SELECT id FROM users WHERE email=?', ['test@example.com']);
 // rows = [{ id: 42, id: 965, id: 394 }]
 
 await mysql.disconnect();

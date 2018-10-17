@@ -44,6 +44,61 @@ describe('Querying', () => {
     await mysqlConnection.end();
   });
 
+  describe('#query', () => {
+    const mysqlConector = new MysqlConnector(mysqlConfig);
+
+    beforeEach(async () => {
+      await mysqlConector.connect();
+    });
+
+    afterEach(async () => {
+      await mysqlConector.disconnect();
+    });
+
+    it('throws an error on invalid query', async () => {
+      let error;
+      let rows;
+      try {
+        [rows] = await mysqlConector.query('SELECT FALSE FROM', []);
+      } catch (err) {
+        error = err;
+      }
+      expect(rows).to.equal(undefined);
+      expect(error).to.be.an.instanceOf(Error);
+      expect(error.message).to.match(/^You have an error in your SQL syntax/);
+    });
+
+    it('throws an error on invalid placeholders', async () => {
+      let error;
+      let rows;
+      try {
+        [rows] = await mysqlConector.query('SELECT ? AS test FROM DUAL', null);
+      } catch (err) {
+        error = err;
+      }
+      expect(rows).to.equal(undefined);
+      expect(error).to.be.an.instanceOf(Error);
+      expect(error.message).to.equal(
+        'Incorrect arguments to mysqld_stmt_execute',
+      );
+    });
+
+    it('performs a simple query without placeholders', async () => {
+      const [rows] = await mysqlConector.query(
+        "SELECT 'test' AS TEST FROM DUAL",
+      );
+      expect(rows).to.deep.equal([{ TEST: 'test' }]);
+    });
+
+    it('performs a query against database with placeholders', async () => {
+      const [rows] = await mysqlConector.query(
+        "SELECT 'test' AS TEST, ? AS TEST2 FROM DUAL",
+        ['test2'],
+      );
+      expect(rows).to.deep.equal([{ TEST: 'test', TEST2: 'test2' }]);
+    });
+  });
+
   describe('#findMany', () => {
     const mysqlConector = new MysqlConnector(mysqlConfig);
 
