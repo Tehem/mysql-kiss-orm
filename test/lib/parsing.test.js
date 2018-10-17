@@ -58,6 +58,10 @@ describe('[UTILS] parsing', () => {
       const sortingPart = parsingLib.getSortingPart({});
       expect(sortingPart).to.equal('');
     });
+    it('returns empty string if sort is in the end invalid', () => {
+      const sortingPart = parsingLib.getSortingPart({ 0: null });
+      expect(sortingPart).to.equal('');
+    });
     it('returns ORDER BY string with sort direction regardless of case', () => {
       const sortingPart = parsingLib.getSortingPart({
         id: 'asc',
