@@ -6,7 +6,7 @@ const mysql = require('mysql2/promise');
 
 const MysqlConnector = require('../../lib/MysqlConnector');
 
-describe('Querying', () => {
+describe('Inserting rows', () => {
   let mysqlConnection;
   const sandbox = sinon.createSandbox();
   const mysqlConfig = {
@@ -15,6 +15,7 @@ describe('Querying', () => {
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
   };
+  const mysqlConector = new MysqlConnector(mysqlConfig);
 
   before(async () => {
     mysqlConnection = await mysql.createConnection({
@@ -30,11 +31,13 @@ describe('Querying', () => {
     await mysqlConnection.execute(
       'CREATE TABLE `tests` (`id` INT(11) NOT NULL, `name` VARCHAR(100) NOT NULL, `type` INT(1) NOT NULL)',
     );
+    await mysqlConector.connect();
   });
 
   afterEach(async () => {
     sandbox.restore();
     await mysqlConnection.query('DROP TABLE IF EXISTS `tests`');
+    await mysqlConector.disconnect();
   });
 
   after(async () => {
@@ -42,16 +45,6 @@ describe('Querying', () => {
   });
 
   describe('#insertMany', () => {
-    const mysqlConector = new MysqlConnector(mysqlConfig);
-
-    beforeEach(async () => {
-      await mysqlConector.connect();
-    });
-
-    afterEach(async () => {
-      await mysqlConector.disconnect();
-    });
-
     it('throws an error if rows is invalid', async () => {
       let error;
       try {
@@ -115,6 +108,45 @@ describe('Querying', () => {
         { id: 2, name: 'Joe Mocha', type: 2 },
         { id: 3, name: 'Jake Cappuccino', type: 1 },
       ]);
+    }).timeout(1000);
+  });
+
+  describe('#insertOne', () => {
+    beforeEach(async () => {
+      await mysqlConnection.execute('DROP TABLE IF EXISTS `tests2`');
+      await mysqlConnection.execute(
+        'CREATE TABLE `tests2` (`id` INT(11) NOT NULL AUTO_INCREMENT, `name` CHAR(100) NOT NULL, PRIMARY KEY (id))',
+      );
+    });
+
+    afterEach(async () => {
+      await mysqlConnection.query('DROP TABLE IF EXISTS `tests2`');
+    });
+
+    it('throw an error if row is missing or empty', async () => {
+      let error;
+      try {
+        await mysqlConector.insertOne('tests2', {});
+      } catch (err) {
+        error = err;
+      }
+      expect(error).to.be.an.instanceOf(Error);
+      expect(error.message).to.equal('Invalid or empty row object');
+    });
+
+    it('inserts one row in the table (with auto-increment)', async () => {
+      const { affectedRows, insertId } = await mysqlConector.insertOne(
+        'tests2',
+        { name: 'John Doe' },
+      );
+
+      expect({ affectedRows, insertId }).to.deep.equal({
+        affectedRows: 1,
+        insertId: 1,
+      });
+
+      const rows = await mysqlConector.findMany('tests2');
+      expect(rows).to.deep.equal([{ id: 1, name: 'John Doe' }]);
     });
   });
 });
