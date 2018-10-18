@@ -1,10 +1,9 @@
 # KISS Orm for MySQL
 
-[![Build Status](https://travis-ci.org/Tehem/mysql-kiss-orm.svg?branch=master)](https://travis-ci.org/Tehem/mysql-kiss-orm)
-[![codecov](https://codecov.io/gh/Tehem/mysql-kiss-orm/branch/master/graph/badge.svg)](https://codecov.io/gh/Tehem/mysql-kiss-orm)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Build Status](https://travis-ci.org/Tehem/mysql-kiss-orm.svg?branch=master)](https://travis-ci.org/Tehem/mysql-kiss-orm)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9bfea0dab15584faf5eb/maintainability)](https://codeclimate.com/github/Tehem/mysql-kiss-orm/maintainability)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9bfea0dab15584faf5eb/test_coverage)](https://codeclimate.com/github/Tehem/mysql-kiss-orm/test_coverage)
 ## Introduction
 
 Small ORM wrapper for [`node-mysql2`](https://github.com/sidorares/node-mysql2), 
