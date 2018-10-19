@@ -108,7 +108,7 @@ describe('Inserting rows', () => {
         { id: 2, name: 'Joe Mocha', type: 2 },
         { id: 3, name: 'Jake Cappuccino', type: 1 },
       ]);
-    }).timeout(1000);
+    });
   });
 
   describe('#insertOne', () => {
