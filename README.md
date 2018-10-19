@@ -4,6 +4,29 @@
 [![Build Status](https://travis-ci.org/Tehem/mysql-kiss-orm.svg?branch=master)](https://travis-ci.org/Tehem/mysql-kiss-orm)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9bfea0dab15584faf5eb/maintainability)](https://codeclimate.com/github/Tehem/mysql-kiss-orm/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/9bfea0dab15584faf5eb/test_coverage)](https://codeclimate.com/github/Tehem/mysql-kiss-orm/test_coverage)
+
+
+## Table of Contents
+
+- [Install](#install)
+- [Introduction](#introduction)
+- [Examples](#examples)
+- [Running Tests](#running-tests)
+
+## Install
+
+This is a [Node.js](https://nodejs.org/en/) module available through the
+[npm registry](https://www.npmjs.com/).
+
+Before installing, [download and install Node.js](https://nodejs.org/en/download/).
+Node.js 8.12 or higher is required.
+
+Installation is done using the
+[`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
+
+```sh
+$ npm install mysql-kiss-orm
+```
 ## Introduction
 
 Small ORM wrapper for [`node-mysql2`](https://github.com/sidorares/node-mysql2), 
@@ -15,7 +38,7 @@ through a fluid (sort of) API.
 
 This library use the async/await syntax.
 
-## Example
+## Examples
 
 ```javascript
 const mysqlConfig = {
@@ -52,10 +75,6 @@ const [ rows ] = await mysql.query('SELECT id FROM users WHERE email=?', ['test@
 
 await mysql.disconnect();
 ```
-
-## Usage
-
-TODO
 
 ## Running tests
 
