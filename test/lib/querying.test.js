@@ -99,6 +99,29 @@ describe('Querying', () => {
     });
   });
 
+  describe('#getLastQuery', () => {
+    const mysqlConector = new MysqlConnector(mysqlConfig);
+
+    beforeEach(async () => {
+      await mysqlConector.connect();
+    });
+
+    afterEach(async () => {
+      await mysqlConector.disconnect();
+    });
+
+    it('returns last SQL with placeholders #1', async () => {
+      await mysqlConector.query('SELECT ? AS test1, ? AS test2 FROM DUAL', [
+        'joe',
+        'mocha',
+      ]);
+      const last = mysqlConector.getLastQuery();
+      expect(last).to.equal(
+        'SELECT ? AS test1, ? AS test2 FROM DUAL [joe, mocha]',
+      );
+    });
+  });
+
   describe('#findMany', () => {
     const mysqlConector = new MysqlConnector(mysqlConfig);
 
