@@ -51,12 +51,21 @@ const mysqlConfig = {
 const mysql = new MysqlConnector(mysqlConfig);
 await mysql.connect();
 
-const user = { id: 123, name: 'John Doe', email: 'test@example.com' };
-await mysql.insertOne('users', user);
-// INSERT INTO users (id, name, email) VALUES (123, 'John Doe', 'test@example.com');
+const user = { name: 'John Doe', email: 'test@example.com' };
+const results = await mysql.insertOne('users', user);
+// INSERT INTO users (name, email) VALUES ('John Doe', 'test@example.com');
+const insertId = results.insertId; // id = 12345
+
+
+await mysql.insertMany('users', [{ name: 'Jake Coffee' }, { name: 'John Latte' }]);
+// INSERT INTO users (name) VALUES ('Jake Coffee'), ('John Latte');
 
 await mysql.updateOne('users', { id: 123 }, { name: 'Jane Doe' });
 // UPDATE users SET name='Jane Doe' WHERE id=123
+
+await mysql.updateMany('users', { type: 2 }, { country: 'France' });
+// UPDATE users SET country='France' WHERE type=2
+const countUpdated = results.affectedRows;
 
 await mysql.deleteOne('users', user);
 // DELETE FROM users WHERE id=user.id ...
