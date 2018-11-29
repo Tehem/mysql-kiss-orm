@@ -95,4 +95,35 @@ describe('Updating rows', () => {
       ]);
     });
   });
+
+  describe('#updateMany', () => {
+    it('throws and error if match parameter is invalid', async () => {
+      let error;
+      try {
+        await mysqlConector.updateOne('tests', {}, {});
+      } catch (err) {
+        error = err;
+      }
+      expect(error).to.be.an.instanceOf(Error);
+      expect(error.message).to.equal('Empty matching object for single update');
+    });
+
+    it('updates first matching row in table using sort', async () => {
+      const results = await mysqlConector.updateOne(
+        'tests',
+        { country: 'FR', type: 1 },
+        { type: 5, name: 'updated' },
+        { sort: { id: 'ASC' } },
+      );
+      expect(results.affectedRows).to.equal(1);
+      expect(results.changedRows).to.equal(1);
+      const [rows] = await mysqlConnection.query('SELECT * FROM tests');
+      expect(rows).to.deep.equal([
+        { id: 1, name: 'updated', type: 5, country: 'FR' },
+        { id: 2, name: 'test 2', type: 3, country: 'FR' },
+        { id: 3, name: 'test 3', type: 3, country: 'PT' },
+        { id: 4, name: 'test 4', type: 1, country: 'FR' },
+      ]);
+    });
+  });
 });
