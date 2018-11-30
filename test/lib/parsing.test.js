@@ -31,14 +31,17 @@ describe('[UTILS] parsing', () => {
       const queryPart = parsingLib.getQueryPart(null);
       expect(queryPart).to.equal('1');
     });
+
     it('returns 1 if query is empty', () => {
       const queryPart = parsingLib.getQueryPart({});
       expect(queryPart).to.equal('1');
     });
+
     it('returns one field with a placeholder part if only one key', () => {
       const queryPart = parsingLib.getQueryPart({ joe: 'mocha' });
       expect(queryPart).to.equal('joe=?');
     });
+
     it('returns multiple field with placeholders part if multiple keys', () => {
       const queryPart = parsingLib.getQueryPart({
         joe: 'mocha',
@@ -67,7 +70,7 @@ describe('[UTILS] parsing', () => {
         id: 'asc',
         name: 'DESc',
       });
-      expect(sortingPart).to.equal('ORDER BY id ASC, name DESC');
+      expect(sortingPart).to.equal(' ORDER BY id ASC,name DESC');
     });
   });
 

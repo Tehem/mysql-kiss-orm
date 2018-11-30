@@ -1,6 +1,6 @@
 {
   "name": "mysql-kiss-orm",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple Node.JS MySQL ORM attempt",
   "main": "index.js",
   "directories": {
