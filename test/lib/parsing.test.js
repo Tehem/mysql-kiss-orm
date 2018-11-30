@@ -70,7 +70,7 @@ describe('[UTILS] parsing', () => {
         id: 'asc',
         name: 'DESc',
       });
-      expect(sortingPart).to.equal('ORDER BY id ASC,name DESC');
+      expect(sortingPart).to.equal(' ORDER BY id ASC,name DESC');
     });
   });
 
