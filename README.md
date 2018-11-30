@@ -1,10 +1,11 @@
 # KISS Orm for MySQL
 
+[![npm](https://img.shields.io/npm/v/mysql-kiss-orm.svg)](https://www.npmjs.com/package/mysql-kiss-orm)
+[![License](https://img.shields.io/github/license/Tehem/mysql-kiss-orm.svg)](LICENSE)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Build Status](https://travis-ci.org/Tehem/mysql-kiss-orm.svg?branch=master)](https://travis-ci.org/Tehem/mysql-kiss-orm)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9bfea0dab15584faf5eb/maintainability)](https://codeclimate.com/github/Tehem/mysql-kiss-orm/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/9bfea0dab15584faf5eb/test_coverage)](https://codeclimate.com/github/Tehem/mysql-kiss-orm/test_coverage)
-
 
 ## Table of Contents
 
