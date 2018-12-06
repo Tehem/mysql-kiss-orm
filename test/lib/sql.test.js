@@ -4,6 +4,18 @@ const { expect } = require('chai');
 const sqlLib = require('../../lib/sql');
 
 describe('[UTILS] SQL', () => {
+  describe('#buildCountSql', () => {
+    it('builds a simple count SQL', () => {
+      const countSql = sqlLib.buildCountSql('test', {
+        foo: 'bar',
+        test: 'test',
+      });
+      expect(countSql).to.equal(
+        'SELECT COUNT(*) AS counter FROM test WHERE foo=? AND test=?',
+      );
+    });
+  });
+
   describe('#buildFindSql', () => {
     it('builds a simple find SQL', () => {
       const findSql = sqlLib.buildFindSql('test', {

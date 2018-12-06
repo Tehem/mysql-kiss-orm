@@ -44,6 +44,28 @@ describe('Selecting rows', () => {
     await mysqlConnection.end();
   });
 
+  describe('#count', () => {
+    const mysqlConector = new MysqlConnector(mysqlConfig);
+
+    beforeEach(async () => {
+      await mysqlConector.connect();
+    });
+
+    afterEach(async () => {
+      await mysqlConector.disconnect();
+    });
+
+    it('finds 0 matching rows in table', async () => {
+      const count = await mysqlConector.count('tests', { type: 0 });
+      expect(count).to.equal(0);
+    });
+
+    it('finds all rows in table', async () => {
+      const count = await mysqlConector.count('tests');
+      expect(count).to.equal(3);
+    });
+  });
+
   describe('#findMany', () => {
     const mysqlConector = new MysqlConnector(mysqlConfig);
 

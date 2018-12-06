@@ -79,6 +79,10 @@ const users = await mysql.findMany('users', { type: 2 }, { offset: 10, limit: 10
 const user = await mysql.findOne('users', { id: 123 }, { projections: ['name'] });
 // user = { name: 'Jane Doe' }
 
+// Row count (COUNT *)
+const count = await mysql.count('users', { type: 5 });
+// count = 122
+
 // RAW prepared queries
 const [ rows ] = await mysql.query('SELECT id FROM users WHERE email=?', ['test@example.com']);
 // rows = [{ id: 42, id: 965, id: 394 }]
