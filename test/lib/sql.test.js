@@ -178,4 +178,43 @@ describe('[UTILS] SQL', () => {
       );
     });
   });
+
+  describe('#buildDeleteSql', () => {
+    it('builds a simple delete SQL', () => {
+      const deleteSql = sqlLib.buildDeleteSql('test', {});
+      expect(deleteSql).to.equal('DELETE FROM test WHERE 1');
+    });
+
+    it('builds a delete SQL with matching criterias', () => {
+      const deleteSql = sqlLib.buildDeleteSql('test', {
+        name: 'test',
+        age: 14,
+      });
+      expect(deleteSql).to.equal('DELETE FROM test WHERE name=? AND age=?');
+    });
+
+    it('builds a delete SQL with sorting', () => {
+      const deleteSql = sqlLib.buildDeleteSql(
+        'test',
+        { name: 'john', address: 'test' },
+        { sort: { name: 'ASC', age: 'DESC' } },
+      );
+      expect(deleteSql).to.equal(
+        'DELETE FROM test WHERE name=? AND address=? ' +
+          'ORDER BY name ASC,age DESC',
+      );
+    });
+
+    it('builds a delete SQL with sorting and limit', () => {
+      const deleteSql = sqlLib.buildDeleteSql(
+        'test',
+        { name: 'john', address: 'test' },
+        { sort: { name: 'ASC', age: 'DESC' }, limit: 2 },
+      );
+      expect(deleteSql).to.equal(
+        'DELETE FROM test WHERE name=? AND address=? ' +
+          'ORDER BY name ASC,age DESC LIMIT 2',
+      );
+    });
+  });
 });
