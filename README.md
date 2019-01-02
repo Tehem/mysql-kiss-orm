@@ -61,6 +61,7 @@ const insertId = results.insertId; // id = 12345
 await mysql.insertMany('users', [{ name: 'Jake Coffee' }, { name: 'John Latte' }]);
 // INSERT INTO users (name) VALUES ('Jake Coffee'), ('John Latte');
 
+// update all matching rows (but with limit 1)
 await mysql.updateOne('users', { id: 123 }, { name: 'Jane Doe' });
 // UPDATE users SET name='Jane Doe' WHERE id=123
 
@@ -68,6 +69,7 @@ await mysql.updateMany('users', { type: 2 }, { country: 'France' });
 // UPDATE users SET country='France' WHERE type=2
 const countUpdated = results.affectedRows;
 
+// delete all matching row (but with limit 1)
 await mysql.deleteOne('users', user);
 // DELETE FROM users WHERE id=user.id ...
 
