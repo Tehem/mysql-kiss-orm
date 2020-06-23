@@ -1,6 +1,6 @@
 {
   "name": "mysql-kiss-orm",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Simple Node.JS MySQL ORM attempt",
   "main": "index.js",
   "directories": {
@@ -36,7 +36,7 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-metrics": "1.0.4",
     "mocha": "5.2.0",
-    "nyc": "13.0.1",
+    "nyc": "15.1.0",
     "prettier": "1.14.3",
     "sinon": "6.3.3"
   },
