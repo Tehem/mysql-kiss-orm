@@ -1,6 +1,6 @@
 {
   "name": "mysql-kiss-orm",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Simple Node.JS MySQL ORM attempt",
   "main": "index.js",
   "directories": {
@@ -20,15 +20,15 @@
     "test": "npm run lint && npm run coverage"
   },
   "dependencies": {
-    "esdoc": "1.1.0",
-    "esdoc-ecmascript-proposal-plugin": "1.0.0",
-    "esdoc-node": "1.0.3",
-    "esdoc-standard-plugin": "1.0.0",
     "lodash": "4.17.15",
     "mysql2": "1.6.1"
   },
   "devDependencies": {
     "chai": "4.1.2",
+    "esdoc": "1.1.0",
+    "esdoc-ecmascript-proposal-plugin": "1.0.0",
+    "esdoc-node": "1.0.3",
+    "esdoc-standard-plugin": "1.0.0",
     "eslint": "5.6.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-cp": "5.4.0",
