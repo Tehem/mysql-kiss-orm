@@ -20,7 +20,7 @@
     "test": "npm run lint && npm run coverage"
   },
   "dependencies": {
-    "lodash": "4.17.15",
+    "lodash": "4.17.21",
     "mysql2": "1.6.1"
   },
   "devDependencies": {
